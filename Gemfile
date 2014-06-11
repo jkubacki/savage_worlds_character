@@ -20,6 +20,16 @@ gem 'jquery-rails'
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
+
+# Authentication
+gem 'devise'
+
+# Authorization
+gem 'cancan'
+
+# ActiveAdmin
+gem 'activeadmin', github: 'gregbell/active_admin'
+
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
@@ -33,7 +43,6 @@ group :development, :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
 end
-
 
 
 # Use ActiveModel has_secure_password
