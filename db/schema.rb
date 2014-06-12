@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612062415) do
+ActiveRecord::Schema.define(version: 20140612175930) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -169,6 +169,14 @@ ActiveRecord::Schema.define(version: 20140612062415) do
   create_table "edges_modifiers", id: false, force: true do |t|
     t.integer "edge_id",     null: false
     t.integer "modifier_id", null: false
+  end
+
+  add_index "edges_modifiers", ["edge_id", "modifier_id"], name: "index_edges_modifiers_on_edge_id_and_modifier_id"
+  add_index "edges_modifiers", ["modifier_id", "edge_id"], name: "index_edges_modifiers_on_modifier_id_and_edge_id"
+
+  create_table "edges_requirements", id: false, force: true do |t|
+    t.integer "edge_id",        null: false
+    t.integer "requirement_id", null: false
   end
 
   create_table "hindrance_types", force: true do |t|
@@ -334,6 +342,11 @@ ActiveRecord::Schema.define(version: 20140612062415) do
   add_index "powers", ["power_type_id"], name: "index_powers_on_power_type_id"
   add_index "powers", ["rank_id"], name: "index_powers_on_rank_id"
 
+  create_table "powers_requirements", id: false, force: true do |t|
+    t.integer "power_id",       null: false
+    t.integer "requirement_id", null: false
+  end
+
   create_table "races", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -344,6 +357,63 @@ ActiveRecord::Schema.define(version: 20140612062415) do
     t.string   "name"
     t.integer  "min_exp"
     t.integer  "max_exp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "req_attribs", force: true do |t|
+    t.integer  "attrib_id"
+    t.integer  "dice_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "req_attribs", ["attrib_id"], name: "index_req_attribs_on_attrib_id"
+  add_index "req_attribs", ["dice_id"], name: "index_req_attribs_on_dice_id"
+
+  create_table "req_character_types", force: true do |t|
+    t.integer  "character_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "req_character_types", ["character_type_id"], name: "index_req_character_types_on_character_type_id"
+
+  create_table "req_edges", force: true do |t|
+    t.integer  "edge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "req_edges", ["edge_id"], name: "index_req_edges_on_edge_id"
+
+  create_table "req_powers", force: true do |t|
+    t.integer  "power_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "req_powers", ["power_id"], name: "index_req_powers_on_power_id"
+
+  create_table "req_ranks", force: true do |t|
+    t.integer  "rank_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "req_ranks", ["rank_id"], name: "index_req_ranks_on_rank_id"
+
+  create_table "req_skills", force: true do |t|
+    t.integer  "skill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "req_skills", ["skill_id"], name: "index_req_skills_on_skill_id"
+
+  create_table "requirements", force: true do |t|
+    t.integer  "req_id"
+    t.string   "req_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

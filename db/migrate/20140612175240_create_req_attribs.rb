@@ -1,0 +1,10 @@
+class CreateReqAttribs < ActiveRecord::Migration
+  def change
+    create_table :req_attribs do |t|
+      t.belongs_to :attrib, index: true
+      t.belongs_to :dice, index: true
+
+      t.timestamps
+    end
+  end
+end
