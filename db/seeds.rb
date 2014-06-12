@@ -5,4 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Dir[File.join(Rails.root, 'db', 'seeds', '*.rb')].sort.each { |seed| load seed }
+
+# This code loads seeds by name
+# Dir[File.join(Rails.root, 'db', 'seeds', files)].sort.each { |seed| load seed }
+
+# This code loads seeds from db/seeds in specified order
+files = %w(attribs cards dice ranks skills edges)
+files.each {|f| load File.join(Rails.root, 'db', 'seeds', "#{f.to_s}.rb").to_s}
+
+

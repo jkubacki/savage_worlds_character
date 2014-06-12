@@ -1,0 +1,5 @@
+Rank.find_or_create_by(name: 'Novice', min_exp: nil, max_exp: 19)
+Rank.find_or_create_by(name: 'Seasoned', min_exp: 20, max_exp: 39)
+Rank.find_or_create_by(name: 'Veteran', min_exp: 40, max_exp: 59)
+Rank.find_or_create_by(name: 'Heroic', min_exp: 60, max_exp: 79)
+Rank.find_or_create_by(name: 'Legendary', min_exp: 80, max_exp: nil)
