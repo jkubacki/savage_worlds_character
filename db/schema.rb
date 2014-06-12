@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612055457) do
+ActiveRecord::Schema.define(version: 20140612062415) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -166,6 +166,11 @@ ActiveRecord::Schema.define(version: 20140612055457) do
   add_index "edges", ["edge_type_id"], name: "index_edges_on_edge_type_id"
   add_index "edges", ["rank_id"], name: "index_edges_on_rank_id"
 
+  create_table "edges_modifiers", id: false, force: true do |t|
+    t.integer "edge_id",     null: false
+    t.integer "modifier_id", null: false
+  end
+
   create_table "hindrance_types", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -181,6 +186,11 @@ ActiveRecord::Schema.define(version: 20140612055457) do
   end
 
   add_index "hindrances", ["hindrance_type_id"], name: "index_hindrances_on_hindrance_type_id"
+
+  create_table "hindrances_modifiers", id: false, force: true do |t|
+    t.integer "hindrance_id", null: false
+    t.integer "modifier_id",  null: false
+  end
 
   create_table "modifier_attrib_types", force: true do |t|
     t.integer  "dices"
@@ -296,6 +306,11 @@ ActiveRecord::Schema.define(version: 20140612055457) do
     t.string   "modifier_type_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "modifiers_races", id: false, force: true do |t|
+    t.integer "modifier_id", null: false
+    t.integer "race_id",     null: false
   end
 
   create_table "power_types", force: true do |t|
