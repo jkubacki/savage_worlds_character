@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612175930) do
+ActiveRecord::Schema.define(version: 20140612181503) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -171,9 +171,6 @@ ActiveRecord::Schema.define(version: 20140612175930) do
     t.integer "modifier_id", null: false
   end
 
-  add_index "edges_modifiers", ["edge_id", "modifier_id"], name: "index_edges_modifiers_on_edge_id_and_modifier_id"
-  add_index "edges_modifiers", ["modifier_id", "edge_id"], name: "index_edges_modifiers_on_modifier_id_and_edge_id"
-
   create_table "edges_requirements", id: false, force: true do |t|
     t.integer "edge_id",        null: false
     t.integer "requirement_id", null: false
@@ -200,118 +197,60 @@ ActiveRecord::Schema.define(version: 20140612175930) do
     t.integer "modifier_id",  null: false
   end
 
-  create_table "modifier_attrib_types", force: true do |t|
-    t.integer  "dices"
-    t.integer  "plus"
+  create_table "mod_attribs", force: true do |t|
     t.integer  "attrib_id"
+    t.integer  "dice_mod"
+    t.integer  "mod"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "modifier_attrib_types", ["attrib_id"], name: "index_modifier_attrib_types_on_attrib_id"
+  add_index "mod_attribs", ["attrib_id"], name: "index_mod_attribs_on_attrib_id"
 
-  create_table "modifier_edge_types", force: true do |t|
+  create_table "mod_edges", force: true do |t|
     t.integer  "edge_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "modifier_edge_types", ["edge_id"], name: "index_modifier_edge_types_on_edge_id"
+  add_index "mod_edges", ["edge_id"], name: "index_mod_edges_on_edge_id"
 
-  create_table "modifier_hindrance_types", force: true do |t|
+  create_table "mod_hindrances", force: true do |t|
     t.integer  "hindrance_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "modifier_hindrance_types", ["hindrance_id"], name: "index_modifier_hindrance_types_on_hindrance_id"
+  add_index "mod_hindrances", ["hindrance_id"], name: "index_mod_hindrances_on_hindrance_id"
 
-  create_table "modifier_power_types", force: true do |t|
+  create_table "mod_powers", force: true do |t|
     t.integer  "power_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "modifier_power_types", ["power_id"], name: "index_modifier_power_types_on_power_id"
+  add_index "mod_powers", ["power_id"], name: "index_mod_powers_on_power_id"
 
-  create_table "modifier_secondary_bennies_types", force: true do |t|
-    t.integer  "mod"
+  create_table "mod_secondaries", force: true do |t|
+    t.integer  "mods_id"
+    t.string   "mods_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "modifier_secondary_charisma_types", force: true do |t|
-    t.integer  "mod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "modifier_secondary_ini_cards_types", force: true do |t|
-    t.integer  "cards"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "modifier_secondary_ini_max_types", force: true do |t|
-    t.integer  "card_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "modifier_secondary_ini_max_types", ["card_id"], name: "index_modifier_secondary_ini_max_types_on_card_id"
-
-  create_table "modifier_secondary_ini_min_types", force: true do |t|
-    t.integer  "card_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "modifier_secondary_ini_min_types", ["card_id"], name: "index_modifier_secondary_ini_min_types_on_card_id"
-
-  create_table "modifier_secondary_pace_types", force: true do |t|
-    t.integer  "mod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "modifier_secondary_parry_types", force: true do |t|
-    t.integer  "mod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "modifier_secondary_running_dice_types", force: true do |t|
-    t.integer  "dices"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "modifier_secondary_toughness_types", force: true do |t|
-    t.integer  "mod"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "modifier_secondary_types", force: true do |t|
-    t.integer  "modifier_secondary_type_type_id"
-    t.string   "modifier_secondary_type_type_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "modifier_skill_types", force: true do |t|
-    t.integer  "dices"
-    t.integer  "plus"
+  create_table "mod_skills", force: true do |t|
     t.integer  "skill_id"
+    t.integer  "dice_mod"
+    t.integer  "mod"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "modifier_skill_types", ["skill_id"], name: "index_modifier_skill_types_on_skill_id"
+  add_index "mod_skills", ["skill_id"], name: "index_mod_skills_on_skill_id"
 
   create_table "modifiers", force: true do |t|
-    t.integer  "modifier_type_id"
-    t.string   "modifier_type_type"
+    t.integer  "mod_id"
+    t.string   "mod_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -319,6 +258,64 @@ ActiveRecord::Schema.define(version: 20140612175930) do
   create_table "modifiers_races", id: false, force: true do |t|
     t.integer "modifier_id", null: false
     t.integer "race_id",     null: false
+  end
+
+  create_table "mods_bennies", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mods_charismas", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mods_ini_cards", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mods_ini_maxes", force: true do |t|
+    t.integer  "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mods_ini_maxes", ["card_id"], name: "index_mods_ini_maxes_on_card_id"
+
+  create_table "mods_ini_mins", force: true do |t|
+    t.integer  "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "mods_ini_mins", ["card_id"], name: "index_mods_ini_mins_on_card_id"
+
+  create_table "mods_paces", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mods_parries", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mods_running_dices", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "mods_toughnesses", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "power_types", force: true do |t|
