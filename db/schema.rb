@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612023812) do
+ActiveRecord::Schema.define(version: 20140612055457) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -181,6 +181,122 @@ ActiveRecord::Schema.define(version: 20140612023812) do
   end
 
   add_index "hindrances", ["hindrance_type_id"], name: "index_hindrances_on_hindrance_type_id"
+
+  create_table "modifier_attrib_types", force: true do |t|
+    t.integer  "dices"
+    t.integer  "plus"
+    t.integer  "attrib_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modifier_attrib_types", ["attrib_id"], name: "index_modifier_attrib_types_on_attrib_id"
+
+  create_table "modifier_edge_types", force: true do |t|
+    t.integer  "edge_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modifier_edge_types", ["edge_id"], name: "index_modifier_edge_types_on_edge_id"
+
+  create_table "modifier_hindrance_types", force: true do |t|
+    t.integer  "hindrance_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modifier_hindrance_types", ["hindrance_id"], name: "index_modifier_hindrance_types_on_hindrance_id"
+
+  create_table "modifier_power_types", force: true do |t|
+    t.integer  "power_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modifier_power_types", ["power_id"], name: "index_modifier_power_types_on_power_id"
+
+  create_table "modifier_secondary_bennies_types", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifier_secondary_charisma_types", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifier_secondary_ini_cards_types", force: true do |t|
+    t.integer  "cards"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifier_secondary_ini_max_types", force: true do |t|
+    t.integer  "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modifier_secondary_ini_max_types", ["card_id"], name: "index_modifier_secondary_ini_max_types_on_card_id"
+
+  create_table "modifier_secondary_ini_min_types", force: true do |t|
+    t.integer  "card_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modifier_secondary_ini_min_types", ["card_id"], name: "index_modifier_secondary_ini_min_types_on_card_id"
+
+  create_table "modifier_secondary_pace_types", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifier_secondary_parry_types", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifier_secondary_running_dice_types", force: true do |t|
+    t.integer  "dices"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifier_secondary_toughness_types", force: true do |t|
+    t.integer  "mod"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifier_secondary_types", force: true do |t|
+    t.integer  "modifier_secondary_type_type_id"
+    t.string   "modifier_secondary_type_type_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "modifier_skill_types", force: true do |t|
+    t.integer  "dices"
+    t.integer  "plus"
+    t.integer  "skill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "modifier_skill_types", ["skill_id"], name: "index_modifier_skill_types_on_skill_id"
+
+  create_table "modifiers", force: true do |t|
+    t.integer  "modifier_type_id"
+    t.string   "modifier_type_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "power_types", force: true do |t|
     t.string   "name"
