@@ -1,0 +1,3 @@
+e = Edge.find_or_create_by(name: 'Attractive', description: "It’s no secret that beautiful people have an easier time getting their way in life. This Edge grants your beautiful or handsome character +2 to Charisma.")
+modifier = Modifier.find_or_create_by(modifier_type: ModifierSecondaryType.find_or_create_by(modifier_secondary_type_type: ModifierSecondaryCharismaType.find_or_create_by(mod: 2)))
+if not e.modifiers.include? modifier then e.modifiers << modifier end
