@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612020453) do
+ActiveRecord::Schema.define(version: 20140612023812) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -101,6 +101,52 @@ ActiveRecord::Schema.define(version: 20140612020453) do
   add_index "characters", ["character_type_id"], name: "index_characters_on_character_type_id"
   add_index "characters", ["race_id"], name: "index_characters_on_race_id"
   add_index "characters", ["rank_id"], name: "index_characters_on_rank_id"
+
+  create_table "characters_attribs", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "attrib_id"
+    t.integer  "dice_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "characters_attribs", ["attrib_id"], name: "index_characters_attribs_on_attrib_id"
+  add_index "characters_attribs", ["character_id"], name: "index_characters_attribs_on_character_id"
+  add_index "characters_attribs", ["dice_id"], name: "index_characters_attribs_on_dice_id"
+
+  create_table "characters_edges", id: false, force: true do |t|
+    t.integer "character_id", null: false
+    t.integer "edge_id",      null: false
+  end
+
+  create_table "characters_hindrances", id: false, force: true do |t|
+    t.integer "character_id", null: false
+    t.integer "hindrance_id", null: false
+  end
+
+  create_table "characters_powers", id: false, force: true do |t|
+    t.integer "character_id", null: false
+    t.integer "power_id",     null: false
+  end
+
+  create_table "characters_skills", force: true do |t|
+    t.integer  "character_id"
+    t.integer  "skill_id"
+    t.integer  "dice_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "characters_skills", ["character_id"], name: "index_characters_skills_on_character_id"
+  add_index "characters_skills", ["dice_id"], name: "index_characters_skills_on_dice_id"
+  add_index "characters_skills", ["skill_id"], name: "index_characters_skills_on_skill_id"
+
+  create_table "dices", force: true do |t|
+    t.integer  "number"
+    t.integer  "plus"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "edge_types", force: true do |t|
     t.string   "name"
