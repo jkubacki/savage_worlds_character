@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140611001528) do
+ActiveRecord::Schema.define(version: 20140612020453) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -48,6 +48,125 @@ ActiveRecord::Schema.define(version: 20140611001528) do
 
   create_table "attribs", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "card_ranks", force: true do |t|
+    t.string   "name"
+    t.integer  "strength"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "card_suites", force: true do |t|
+    t.string   "name"
+    t.integer  "strength"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cards", force: true do |t|
+    t.integer  "card_rank_id"
+    t.integer  "card_suite_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cards", ["card_rank_id"], name: "index_cards_on_card_rank_id"
+  add_index "cards", ["card_suite_id"], name: "index_cards_on_card_suite_id"
+
+  create_table "character_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "characters", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "exp"
+    t.integer  "bennies"
+    t.integer  "money"
+    t.integer  "ini_cards"
+    t.integer  "ini_min_id"
+    t.integer  "ini_max_id"
+    t.integer  "race_id"
+    t.integer  "rank_id"
+    t.integer  "character_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "characters", ["character_type_id"], name: "index_characters_on_character_type_id"
+  add_index "characters", ["race_id"], name: "index_characters_on_race_id"
+  add_index "characters", ["rank_id"], name: "index_characters_on_rank_id"
+
+  create_table "edge_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "edges", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "edge_type_id"
+    t.integer  "rank_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "edges", ["edge_type_id"], name: "index_edges_on_edge_type_id"
+  add_index "edges", ["rank_id"], name: "index_edges_on_rank_id"
+
+  create_table "hindrance_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hindrances", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "hindrance_type_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hindrances", ["hindrance_type_id"], name: "index_hindrances_on_hindrance_type_id"
+
+  create_table "power_types", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "powers", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "cost"
+    t.string   "range"
+    t.string   "duration"
+    t.integer  "power_type_id"
+    t.integer  "rank_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "powers", ["power_type_id"], name: "index_powers_on_power_type_id"
+  add_index "powers", ["rank_id"], name: "index_powers_on_rank_id"
+
+  create_table "races", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "ranks", force: true do |t|
+    t.string   "name"
+    t.integer  "min_exp"
+    t.integer  "max_exp"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
