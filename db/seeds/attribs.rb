@@ -1,0 +1,5 @@
+Attrib.find_or_create_by(id: 1, name: 'Spirit')
+Attrib.find_or_create_by(id: 2, name: 'Smarts')
+Attrib.find_or_create_by(id: 3, name: 'Strength')
+Attrib.find_or_create_by(id: 4, name: 'Vigor')
+Attrib.find_or_create_by(id: 5, name: 'Agility')
