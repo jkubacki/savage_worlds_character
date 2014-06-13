@@ -7,9 +7,23 @@ soc = EdgeType.find_or_create_by(id: 6, name: 'Social')
 wei = EdgeType.find_or_create_by(id: 7, name: 'Weird')
 wil = EdgeType.find_or_create_by(id: 8, name: 'Wild Card')
 leg = EdgeType.find_or_create_by(id: 9, name: 'Legendary')
+rac = EdgeType.find_or_create_by(id: 10, name: 'Racial')
 
 
 novice = Rank.novice
+
+# Racial
+e = Edge.find_or_create_by(name: 'Low Light Vision', edge_type: rac, rank: Rank.novice, description: "Your eyes are accustomed to the dark of the underearth. You ignore attack penalties for Dim and Dark lighting")
+
+e = Edge.find_or_create_by(name: 'Tough', edge_type: rac, rank: Rank.novice, description: "You are stout and tough. You start with a d6 Vigor instead of a d4")
+e.add_modifier Modifier.find_or_create_by(mod: ModAttrib.find_or_create_by(attrib: Attrib.vigor, dice_mod: 1))
+
+# Background
+
+e.add_modifier Modifier.find_or_create_by(mod: ModSkill.find_or_create_by(skill: Skill.notice, mod: 2))
+e.add_requirement Requirement.find_or_create_by(req: ReqAttrib.find_or_create_by(attrib: Attrib.agility))
+
+
 e = Edge.find_or_create_by(name: 'Alertness', edge_type: bac, rank: novice, description: "Not much gets by your hero. He’s very observant and perceptive, and adds +2 to his Notice rolls to hear, see, or otherwise sense the world around him.")
 e.add_modifier Modifier.find_or_create_by(mod: ModSkill.find_or_create_by(skill: Skill.notice, mod: 2))
 

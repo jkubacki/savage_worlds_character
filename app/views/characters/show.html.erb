@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @character.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @character.description %>
+</p>
+
+<p>
+  <strong>Exp:</strong>
+  <%= @character.exp %>
+</p>
+
+<p>
+  <strong>Bennies:</strong>
+  <%= @character.bennies %>
+</p>
+
+<p>
+  <strong>Money:</strong>
+  <%= @character.money %>
+</p>
+
+<p>
+  <strong>Ini cards:</strong>
+  <%= @character.ini_cards %>
+</p>
+
+<p>
+  <strong>Ini min:</strong>
+  <%= @character.card %>
+</p>
+
+<p>
+  <strong>Ini max:</strong>
+  <%= @character.card %>
+</p>
+
+<p>
+  <strong>Race:</strong>
+  <%= @character.race %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @character.rank %>
+</p>
+
+<p>
+  <strong>Character type:</strong>
+  <%= @character.character_type %>
+</p>
+
+<%= link_to 'Edit', edit_character_path(@character) %> |
+<%= link_to 'Back', characters_path %>

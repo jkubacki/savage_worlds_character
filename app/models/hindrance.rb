@@ -6,4 +6,8 @@ class Hindrance < ActiveRecord::Base
   def self.method_missing(method_name, *args, &block)
     find_by(name: method_name.to_s.titleize)
   end
+
+  def add_modifier(modifier)
+    if not self.modifiers.include? modifier then self.modifiers << modifier end
+  end
 end
