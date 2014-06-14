@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :characters
+  root 'characters#index'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

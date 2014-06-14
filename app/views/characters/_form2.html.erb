@@ -1,0 +1,73 @@
+<%= form_for(@character) do |f| %>
+    <% if @character.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+          <ul>
+            <% @character.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+    <div class="field">
+      <%= f.label :exp %><br>
+      <%= f.number_field :exp %>
+    </div>
+    <div class="field">
+      <%= f.label :bennies %><br>
+      <%= f.number_field :bennies %>
+    </div>
+    <div class="field">
+      <%= f.label :money %><br>
+      <%= f.number_field :money %>
+    </div>
+    <div class="field">
+      <%= f.label :ini_cards %><br>
+      <%= f.number_field :ini_cards %>
+    </div>
+    <div class="field">
+      <%= f.label :ini_min %><br>
+      <%= collection_select(:character, :ini_min_id, Card.all, :id, :name, prompt: false)%>
+    </div>
+    <div class="field">
+      <%= f.label :ini_max %><br>
+      <%= collection_select(:character, :ini_max_id, Card.all, :id, :name, prompt: false)%>
+    </div>
+    <div class="field">
+      <%= f.label :race_id %><br>
+      <%= collection_select(:character, :race_id, Race.all, :id, :name, prompt: false)%>
+    </div>
+    <div class="field">
+      <%= f.label :rank_id %><br>
+      <%= collection_select(:character, :rank_id, Rank.all, :id, :name, prompt: false)%>
+    </div>
+    <div class="field">
+      <%= f.label :character_type_id %><br>
+      <%= collection_select(:character, :character_type_id, CharacterType.all, :id, :name, prompt: false)%>
+    </div>
+    <div class="field">
+      <%= f.label 'Edges' %><br>
+      <%= collection_check_boxes(:character, :edge_ids, Edge.non_racial, :id, :name)%>
+    </div>
+    <div class="field">
+      <%= f.label 'Hindrances' %><br>
+      <%= collection_check_boxes(:character, :hindrance_ids, Hindrance.all, :id, :name)%>
+    </div>
+    <div class="field">
+      <%= f.label 'Powers' %><br>
+      <%= collection_check_boxes(:character, :power_ids, Power.all, :id, :name)%>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
