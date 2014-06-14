@@ -10,7 +10,7 @@
 # Dir[File.join(Rails.root, 'db', 'seeds', files)].sort.each { |seed| load seed }
 
 # This code loads seeds from db/seeds in specified order
-files = %w(attribs cards dice ranks skills edges hindrances races)
+files = %w(attribs cards character_types dice ranks skills edges hindrances races powers)
 files.each {|f| load File.join(Rails.root, 'db', 'seeds', "#{f.to_s}.rb").to_s}
 
 

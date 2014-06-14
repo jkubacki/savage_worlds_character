@@ -1,0 +1,3 @@
+off = PowerType.find_or_create_by(name: 'Offensive')
+
+Power.find_or_create_by(name: 'Armor', rank: Rank.novice, power_type: off, cost: '2', range: 'Touch', duration: '3 (1/round)', trapping: 'A mystical glow, hardened skin, ethereal armor, a mass of insects or worms.',description: 'Armor creates a field of magical protection around a character or an actual shell of some sort, effectively giving the target Armor. Success grants the recipient 2 points of Armor. A raise grants 4 points of Armor. Whether the armor is visible or not depends largely on the trapping.')

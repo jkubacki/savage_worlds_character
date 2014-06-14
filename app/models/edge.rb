@@ -5,6 +5,8 @@ class Edge < ActiveRecord::Base
   has_and_belongs_to_many :modifiers
   has_and_belongs_to_many :requirements
 
+  scope :non_racial, -> { joins(:edge_type).where('edge_types.name != ?', 'Racial') }
+
   def self.method_missing(method_name, *args, &block)
     find_by(name: method_name.to_s.titleize)
   end

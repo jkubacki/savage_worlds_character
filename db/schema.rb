@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612181503) do
+ActiveRecord::Schema.define(version: 20140614005434) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -334,6 +334,7 @@ ActiveRecord::Schema.define(version: 20140612181503) do
     t.integer  "rank_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "trapping"
   end
 
   add_index "powers", ["power_type_id"], name: "index_powers_on_power_type_id"
