@@ -32,12 +32,12 @@
 
 <p>
   <strong>Ini min:</strong>
-  <%= @character.card %>
+  <%= @character.ini_min %>
 </p>
 
 <p>
   <strong>Ini max:</strong>
-  <%= @character.card %>
+  <%= @character.ini_max %>
 </p>
 
 <p>
@@ -53,6 +53,42 @@
 <p>
   <strong>Character type:</strong>
   <%= @character.character_type %>
+</p>
+
+<p>
+  <strong>Edges:</strong>
+  <table>
+  <% @character.edges.each do |edge| %>
+    <tr>
+      <td title="<%= edge.description %>"><%= edge.name %></td>
+      <td><%= edge.edge_type %></td>
+    </tr>
+  <% end %>
+  </table>
+</p>
+
+<p>
+  <table>
+    <strong>Hindrances:</strong>
+  <% @character.hindrances.each do |hindrance| %>
+    <tr>
+      <td title="<%= hindrance.description %>"><%= hindrance.name %></td>
+      <td><%= hindrance.hindrance_type %></td>
+    </tr>
+  <% end %>
+  </table>
+</p>
+
+<p>
+  <table>
+    <strong>Powers:</strong>
+  <% @character.powers.each do |power| %>
+    <tr>
+      <td title="<%= power.description %>"><%= power.name %></td>
+      <td><%= power.power_type %></td>
+    </tr>
+  <% end %>
+  </table>
 </p>
 
 <%= link_to 'Edit', edit_character_path(@character) %> |

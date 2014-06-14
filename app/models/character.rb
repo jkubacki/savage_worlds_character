@@ -9,4 +9,6 @@ class Character < ActiveRecord::Base
   has_and_belongs_to_many :edges
   has_and_belongs_to_many :hindrances
   has_and_belongs_to_many :powers
+
+  attr_accessible :name, :description, :exp, :bennies, :money, :ini_cards, :ini_min_id, :ini_max_id, :race_id, :rank_id, :character_type_id, :edge_ids, :hindrance_ids, :power_ids
 end
