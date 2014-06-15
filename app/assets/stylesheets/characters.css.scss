@@ -18,6 +18,14 @@
   height: 600mm;
   margin: auto;
   position: relative;
+
+  label {
+    font-family: Allura;
+    font-size: 25px;
+  }
+  .descriptionLabel {
+    display: block;
+  }
 }
 
 #card input, #card select, #card textarea {
@@ -25,9 +33,21 @@
   background: transparent;
   font-family: Allura;
   font-size: 22px;
+  font-weight: bold;
   border-color: transparent;
   border-bottom-color: burlywood;
   border-bottom-style: ridge;
+  margin-left: 10px;
+}
+
+#card input[type='checkbox'], #card input[type='radio'] {
+  width: 10px;
+  margin-left: 0;
+}
+
+#card input[type='submit'] {
+  border-bottom-color: transparent;
+  border-bottom-style: none;
 }
 
 .option {
@@ -40,13 +60,14 @@
 .attribute{
   text-align: left;
   font-family: Allura;
-  font-size: 20px;
+  font-size: 30px;
+  height: 50px;
 }
 
 .skill{
   text-align: left;
   font-family: Allura;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 #user {
@@ -65,16 +86,9 @@
   }
 }
 
-#appearance {
-  position: absolute; left: 85mm; top:95mm;
-}
-
-#archetype {
-  position: absolute; left: 85mm; top:110mm;
-}
 
 #description {
-  position: absolute; left: 85mm; top:125mm;
+  position: absolute; left: 85mm; top:95mm;
 }
 
 #exp {
@@ -86,11 +100,17 @@
 
 #attributes {
   font-size: 15px;
-  position: absolute; left: 75mm; top: 170mm;
+  position: absolute; left: 75mm; top: 120mm;
+}
+
+.header {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 #edges {
-  position: absolute; left: 30mm; top: 248mm;
+  position: absolute; left: 30mm; top: 350mm;
   font-family: Allura;
   font-size: 20px;
   input {
@@ -99,7 +119,7 @@
 }
 
 #hindrances {
-  position: absolute; left: 120mm; top: 248mm;
+  position: absolute; left: 120mm; top: 350mm;
   font-family: Allura;
   font-size: 20px;
   input {
@@ -108,7 +128,7 @@
 }
 
 #powers {
-  position: absolute; left: 210mm; top: 248mm;
+  position: absolute; left: 210mm; top: 350mm;
   font-family: Allura;
   font-size: 20px;
   input {

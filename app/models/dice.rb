@@ -1,4 +1,6 @@
 class Dice < ActiveRecord::Base
+  scope :character_sheet, -> { where('number > ? and plus < ?', 3, 5) }
+
   def self.d3
     find_by(number: 3)
   end
