@@ -46,6 +46,9 @@ end
 
 gem 'protected_attributes'
 
+gem 'simple_form'
+gem 'cocoon'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
